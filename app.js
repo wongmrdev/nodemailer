@@ -27,11 +27,11 @@ app.get('/', (req, res) => {
 
 app.post('/send-email-verification-code', (req, res) => {
     const output = `
-    <p> you have a new contact request</p>
+    <p> Email Verification Code</p>
+    <h1>${req.body.verificationCode} </h1>
     <h3>Contact Details</h3>
     <ul>
         <li>Name: ${req.body.username}</li>
-        <li>Company: Recipe App</li>
         <li>Email: ${req.body.email} </li>
     </ul>
     <h3>Message</h3>
@@ -74,6 +74,6 @@ app.post('/send-email-verification-code', (req, res) => {
     })
     
 } )
-app.listen(process.env.PORT || 5003, () => console.log('mailserver started...'))
+app.listen(process.env.PORT || 5003, () => console.log('mailserver started... on port ', process.env.PORT))
 
 
