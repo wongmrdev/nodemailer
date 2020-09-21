@@ -31,8 +31,8 @@ app.post('/send-email-verification-code', (req, res) => {
     <h1>${req.body.verificationCode} </h1>
     <h3>Contact Details</h3>
     <ul>
-        <li>Name: ${req.body.username}</li>
         <li>Email: ${req.body.email} </li>
+        <li>Expiration: ${Date(req.body.expiration)}</li>
     </ul>
     <h3>Message</h3>
     <p>${req.body.message}</p>
@@ -44,14 +44,14 @@ app.post('/send-email-verification-code', (req, res) => {
         // port: 465,
         // secure: false,
         auth: {
-            user: "matthew.raymond.wong@gmail.com",
+            user: "noreply.family.recipe.app@gmail.com",
             pass: process.env.SMTP_EMAIL_PASSWORD
         }
     })
     
     let mailOptions = {
-        from: '"Matthew Wong" <matthew.raymond.wong@gmail.com>',
-        to: 'matthew.raymond.wong@gmail.com',
+        from: '"Email Verification" <noreply.family.recipe.app@gmail.com>',
+        to:  req.body.email,
         subject: 'Family Recipe App Email Verification',
         text: '',
         html: output
